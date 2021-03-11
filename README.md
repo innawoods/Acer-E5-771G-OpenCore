@@ -15,7 +15,7 @@ These values depend on each other so don't change them individually. Enabling th
 
 iGPU DVMT:
 Again under the Advanced tab > Video Configuration -> Internal Graphic Device set the IGD - Aperture Size to 256 MB; IGD - DVMT Pre-Allocated to 128 MB; IGD - DVMT Size to 128 MB.
-It seems like any other combination breaks when having only MacOS installed (ex. I could set Apeture Size to whatever value I wanted under Windowsbut 256 MB is maximum under this configuration) and it seems like DVMT Size is stuck at 128 MB if we want to be able to touch Pre-Allocated value at all(which we need to change to at least 64 MB remove the framebuffer hack)
+ It seems like any other combination breaks when having only MacOS installed (ex. I could set Apeture Size to whatever value I wanted under Windowsbut 256 MB is maximum under this configuration) and it seems like DVMT Size is stuck at 128 MB if we want to be able to touch Pre-Allocated value at all(which we need to change to at least 64 MB remove the framebuffer hack)
 
 
 
