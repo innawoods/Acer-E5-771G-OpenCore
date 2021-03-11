@@ -8,13 +8,13 @@ Hold Fn + Tab at Boot then release and spam F2 to toggle Advanced Menu in Bios.
 
 Framebuffer hack has been removed from the EFI as has the dGPU disable ACPI file as I have found the combination of BIOS values that work. Please keep in mind if you get any of the following steps wrong and you get a black screen after restart you're going to have to reset your BIOS by opening your laptop. When you do just disconnect the battery, disconnect the coin battery that keeps the BIOS values saved and hold the Power button for at least 15 seconds before reconnecting everything and powering your laptop back on.
 
-###Disable dGPU:
+### Disable dGPU:
 
 Under the Advanced tab -> Video Configuration set Special Features to Disabled; Primary Display should be set to IGFX.
 These values depend on each other so don't change them individually. Enabling the dGPU is as easy as setting these values back to default.
 
 
-###iGPU DVMT:
+### iGPU DVMT:
 
 Again under the Advanced tab > Video Configuration -> Internal Graphic Device set the IGD - Aperture Size to 256 MB; IGD - DVMT Pre-Allocated to 128 MB; IGD - DVMT Size to 128 MB.
 It seems like any other combination breaks when having only MacOS installed (ex. I could set Apeture Size to whatever value I wanted under Windowsbut 256 MB is maximum under this configuration) and it seems like DVMT Size is stuck at 128 MB if we want to be able to touch Pre-Allocated value at all(which we need to change to at least 64 MB remove the framebuffer hack)
