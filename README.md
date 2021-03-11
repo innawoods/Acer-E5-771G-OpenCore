@@ -1,6 +1,7 @@
 # Acer E5 771G - Big Sur OpenCore 0.6.7
 
 CFG Lock disable not possible on this device.
+
 Hold Fn + Tab at Boot then release and spam F2 to toggle Advanced Menu in Bios.
 
 ## Requirements / Values to look out for
@@ -9,16 +10,12 @@ Framebuffer hack has been removed from the EFI as has the dGPU disable ACPI file
 
 Disable dGPU:
 Under the Advanced tab -> Video Configuration set Special Features to Disabled; Primary Display should be set to IGFX.
-
 These values depend on each other so don't change them individually. Enabling the dGPU is as easy as setting these values back to default.
 
 
 iGPU DVMT:
 Again under the Advanced tab > Video Configuration -> Internal Graphic Device set the IGD - Aperture Size to 256 MB; IGD - DVMT Pre-Allocated to 128 MB; IGD - DVMT Size to 128 MB.
-
 It seems like any other combination breaks when having only MacOS installed (ex. I could set Apeture Size to whatever value I wanted under Windowsbut 256 MB is maximum under this configuration) and it seems like DVMT Size is stuck at 128 MB if we want to be able to touch Pre-Allocated value at all(which we need to change to at least 64 MB remove the framebuffer hack)
-
-If anyone has the time feels free to message me or open an issue if you find a better combination.
 
 
 
