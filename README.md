@@ -22,6 +22,20 @@ Again under the Advanced tab > Video Configuration -> Internal Graphic Device se
 It seems like any other combination breaks when having only MacOS installed (ex. I could set Apeture Size to whatever value I wanted under Windowsbut 256 MB is maximum under this configuration) and it seems like DVMT Size is stuck at 128 MB if we want to be able to touch Pre-Allocated value at all(which we need to change to at least 64 MB remove the framebuffer hack)
 
 
+### Fixing Sleep:
+
+After weeks of endless repetition and ambiguous errors the fix was actually really simple and I just kept overlooking it...
+Anyway - in case you're coming from another device and looking for ways to fix your sleep you should first always start with creating a manual USBMap.kext. Map Webcam, bluetooth and anything that's inside of the laptop as 255 aka internal component so it doesn't mess with sleep. This is the first clue I had after I went from instant wakes/reboots to making it enter sleep but instead of resuming from sleep it would just reboot the system. I turned off S3(Sleep) with pmset commands and tried with hibernatemode 25 only and it worked but it broke my wifi, bluetooth and instead of giving me a pulsing orange sleep indication the LED would completely turn off. The system would resume but not before going through the entire boot process once again. Now if you have similar issues and pmset log returning "EFI/Bootrom failure after last point of entry to sleep." the laptops firmware is to blame and you can only fix it by changing how your board interacts with sleep events in BIOS.
+
+
+Now to fix it for Acer boards/Insyde BIOS firmwares (and anyone else that can find these/similar options):
+
+Under Advanced tab -> Chipset Configuration -> set RTC Lock to Disabled (Afaik makes no difference but can't hurt); After G3 On to Last State; Board Capability to DeepSx; DeepSx Power Policies to Enable in S3-S4-S5.
+
+
+And just like that sleep is fixed. Minor issues include mouse clicking and touchpad not waking the device so use the keyboard. Also feel free to add "pmset -a lidwake 1" if you're into that functionality but keep in mind sleep isn't instant (up to 10 seconds) and opening your lid back up doesn't auto resume from sleep so you still have to press a key.
+I'll look into it eventually but I this helps.
+
 
 ## What works:
 
@@ -45,12 +59,12 @@ Samsung 860 Evo SATA SSD
 
 FileVault
 
+Sleep
+
 
 ## Work in progress:
 
 Touchpad (Works with Basic driver set in BIOS with PS2 kext. When I tried switching to HID it would freeze on boot at "HID: Legacy SHIM 2")
-
-Sleep (Managed to get it to sleep by setting Webcam to internal in Usbmap but it reboots when you try to wake it. I tried many bios and settings combinations, tweaked power management and even tried changing SMBios but nothing seems to work atm. Hopefully Apple and/or OpenCore will fix this eventually. Log reports "EFI/Bootrom Failure after last point of entry to sleep". )
 
 Fn + Brightness keys (Every Fn combination works besides this one. Brightness up is at Pause/Break. Needs patching)
 
