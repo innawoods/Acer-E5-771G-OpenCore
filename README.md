@@ -34,7 +34,7 @@ Under Advanced tab -> Chipset Configuration -> set RTC Lock to Disabled (Afaik m
 
 
 And just like that sleep is fixed. Minor issues include mouse clicking and touchpad not waking the device so use the keyboard. Also feel free to add "pmset -a lidwake 1" if you're into that functionality but keep in mind sleep isn't instant (up to 10 seconds) and opening your lid back up doesn't auto resume from sleep so you still have to press a key.
-I'll look into it eventually but I this helps.
+I'll look into it eventually but I hope this helps.
 
 
 ## What works:
